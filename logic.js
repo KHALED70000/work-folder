@@ -77,4 +77,4 @@ function clearCallHistory() {
     setTimeout(() => {
         History_Container.innerHTML = '';
     }, 200);
-}
+};
