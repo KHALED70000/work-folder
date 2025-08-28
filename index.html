@@ -5,16 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        .cursor-pointer:hover{
+            background: black;
+            color: white;
+        }
+        .cursor-pointer:active{
+            transform: scale(0.95);
+            opacity: .3;
+        }
+    </style>
 </head>
 
-<body>
+<body class="bg-[rgba(65,255,107,0.1)] h-full">
 
-    <header class="w-full h-[100px] flex justify-between items-center">
-        <nav class="h-full w-[1140px] mx-auto flex justify-between items-center">
+    <header class="w-full h-[100px] flex justify-between items-center bg-[white]">
+        <nav class="h-full w-[1800px] mx-auto px-[10px] flex justify-between items-center">
             
             <div class="flex items-center gap-4">
                 <img class="h-[50px]" src="assets/logo.png" alt="logo">
@@ -22,25 +34,234 @@
             </div>
 
             <ul class="flex items-center gap-4">
-                <li><button class="text-[15px] font-bold px-[36px] py-[12px] bg-[rgba(65,255,107,0.5)] rounded-[50px]"><span>0</span> <span class="text-[16px]">❤️</span></button></li>
-                <li class="flex items-center gap-2 bg-[rgba(65,255,107,0.5)] px-[25px] py-[12px] rounded-[50px]"><span class="text-[16px] font-bold">100</span><img class="h-[20px]" src="assets/coin.png" alt=""></li>
-                <li><button class="text-[16px] bg-[#00A63E] px-[36px] py-[12px] text-white rounded-[50px] font-[500]"><span>0</span> Copy</button></li>
+                <li><button class="text-[15px] font-bold px-[36px] py-[12px] bg-[rgba(65,255,107,0.1)] rounded-[50px]"><span id="heart_count">0</span> <span class="text-[16px]">❤️</span></button></li>
+                <li class="flex items-center gap-2 bg-[rgba(65,255,107,0.1)] px-[25px] py-[12px] rounded-[50px]"><span id="coin_count" class="text-[16px] font-bold">100</span><img class="h-[20px]" src="assets/coin.png" alt=""></li>
+                <li><button class="text-[16px] bg-[#00A63E] px-[36px] py-[12px] text-white rounded-[50px] font-[500]"><span id="copy_counter">0</span> Copy</button></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <section class="bg-linear-90 from-[#013223] via-[#006747] to-[#013223]">
-            <div class="h-[240px] flex items-center justify-center flex-col">
+            <div class="h-[240px] flex items-center justify-center flex-col px-[10px]">
                 <img class="h-[92px]" src="assets/logo-dark.png" alt="">
                 <h2 class="text-white text-[40px] font-[700]">জরুরি সেবা ডিরেক্টরি</h2>
-                <p class="text-white font-[700] text-[20px] text-center">Government Emergency Services at Your Fingertip – A Project by  Government of the People’s Republic of Bangladesh</p>     
+                <p class="text-white font-[700] text-[20px] text-center">Government Emergency Services at Your Fingertip – A Project by  Government of the People’s Republic of Bangladesh</p>
             </div>
         </section>
-        
-        <!-- cart section -->
-        <section>
 
+        <!-- cart section -->
+        <section class="mt-16 pb-12">
+            <div class="max-w-[1800px] px-[10px] mx-auto grid grid-cols-4 gap-6">
+
+                <div class="col-span-3 grid grid-cols-3 gap-6">
+
+                    <div class="bg-[white] p-6 shadow-md rounded-lg">
+                        <div class="flex justify-between items-center">
+                            <div class="h-[50px] w-[50px] bg-[#FFE3E2] flex items-center justify-center rounded-[15px]">
+                                <img class="h-[30px]" src="assets/emergency.png" alt="">
+                            </div>
+                            <span class="cursor-pointer" onclick="ReactCountHeart()">
+                                <i class="fa-regular fa-heart text-[20px]"></i>
+                            </span>
+                        </div>
+
+                        <h3 class="text-[24px] font-bold">জাতীয় জরুরি সেবা</h3>
+                        <p class="text-[18px] text-[#5C5C5C]">National Emergency</p>
+                        <b class="text-[32px] text-bold block mb-[5px]">999</b>
+                        <span class="text-[gray] bg-[#F2F2F2] text-[18px] py-[8px] px-[12px] rounded-[20px]">সার্বজনীন</span>
+
+                        <div class="grid grid-cols-2 gap-4 mt-4">
+                            <button onclick="copy(event)" class="py-[8px] border-[1px] border-gray-300 rounded-[10px] text-[16px] cursor-pointer"><i class="fa-solid fa-copy"></i> Copy</button> <button onclick="call(event)" class="cursor-pointer bg-[#00A63E] py-[8px] rounded-[10px] text-white text-[16px]"><i class="fa-solid fa-phone"></i> Call</button>
+                        </div>
+
+                    </div>
+
+                    <div class="bg-[white] p-6 rounded-lg shadow-md">
+                        <div class="flex justify-between items-center">
+                            <div class="h-[50px] w-[50px] bg-[#DFEFFF] flex items-center justify-center rounded-[15px]">
+                                <img class="h-[30px]" src="assets/police.png" alt="">
+                            </div>
+                            <span class="cursor-pointer" onclick="ReactCountHeart()">
+                                <i class="fa-regular fa-heart text-[20px]"></i>
+                            </span>
+                        </div>
+
+                        <h3 class="text-[24px] font-bold">পুলিশ</h3>
+                        <p class="text-[18px] text-[#5C5C5C]">Police</p>
+                        <b class="text-[32px] text-bold block mb-[5px]">999</b>
+                        <span class="text-[gray] bg-[#F2F2F2] text-[18px] py-[8px] px-[12px] rounded-[20px]">পুলিশ</span>
+
+                        <div class="grid grid-cols-2 gap-4 mt-4">
+                            <button onclick="copy(event)" class="py-[8px] border-[1px] border-gray-300 rounded-[10px] text-[16px] cursor-pointer"><i class="fa-solid fa-copy"></i> Copy</button> <button onclick="call(event)" class="cursor-pointer bg-[#00A63E] py-[8px] rounded-[10px] text-white text-[16px]"><i class="fa-solid fa-phone"></i> Call</button>
+                        </div>
+
+                    </div>
+
+                    <div class="bg-[white] p-6 rounded-lg shadow-md">
+                        <div class="flex justify-between items-center">
+                            <div class="h-[50px] w-[50px] bg-[#FFE3E2] flex items-center justify-center rounded-[15px]">
+                                <img class="h-[30px]" src="assets/fire-service.png" alt="">
+                            </div>
+                            <span class="cursor-pointer" onclick="ReactCountHeart()">
+                                <i class="fa-regular fa-heart text-[20px]"></i>
+                            </span>
+                        </div>
+
+                        <h3 class="text-[24px] font-bold">ফায়ার সার্ভিস</h3>
+                        <p class="text-[18px] text-[#5C5C5C]">Fire Service</p>
+                        <b class="text-[32px] text-bold block mb-[5px]">999</b>
+                        <span class="text-[gray] bg-[#F2F2F2] text-[18px] py-[8px] px-[12px] rounded-[20px]">ফায়ার</span>
+
+                        <div class="grid grid-cols-2 gap-4 mt-4">
+                            <button onclick="copy(event)" class="py-[8px] border-[1px] border-gray-300 rounded-[10px] text-[16px] cursor-pointer"><i class="fa-solid fa-copy"></i> Copy</button> <button onclick="call(event)" class="cursor-pointer bg-[#00A63E] py-[8px] rounded-[10px] text-white text-[16px]"><i class="fa-solid fa-phone"></i> Call</button>
+                        </div>
+
+                    </div>
+
+                    <div class="bg-[white] p-6 rounded-lg shadow-md">
+                        <div class="flex justify-between items-center">
+                            <div class="h-[50px] w-[50px] bg-[#FFE3E2] flex items-center justify-center rounded-[15px]">
+                                <img class="h-[30px]" src="assets/ambulance.png" alt="">
+                            </div>
+                            <span class="cursor-pointer" onclick="ReactCountHeart()">
+                                <i class="fa-regular fa-heart text-[20px]"></i>
+                            </span>
+                        </div>
+
+                        <h3 class="text-[24px] font-bold">অ্যাম্বুলেন্স</h3>
+                        <p class="text-[18px] text-[#5C5C5C]">Ambulance</p>
+                        <b class="text-[32px] text-bold block mb-[5px]">1994-999999</b>
+                        <span class="text-[gray] bg-[#F2F2F2] text-[18px] py-[8px] px-[12px] rounded-[20px]">স্বাস্থ্য</span>
+
+                        <div class="grid grid-cols-2 gap-4 mt-4">
+                            <button onclick="copy(event)" class="py-[8px] border-[1px] border-gray-300 rounded-[10px] text-[16px] cursor-pointer"><i class="fa-solid fa-copy"></i> Copy</button> <button onclick="call(event)" class="cursor-pointer bg-[#00A63E] py-[8px] rounded-[10px] text-white text-[16px]"><i class="fa-solid fa-phone"></i> Call</button>
+                        </div>
+
+                    </div>
+
+                    <div class="bg-[white] p-6 rounded-lg shadow-md">
+                        <div class="flex justify-between items-center">
+                            <div class="h-[50px] w-[50px] bg-[#FFE3E2] flex items-center justify-center rounded-[15px]">
+                                <img class="h-[30px]" src="assets/emergency.png" alt="">
+                            </div>
+                            <span class="cursor-pointer" onclick="ReactCountHeart()">
+                                <i class="fa-regular fa-heart text-[20px]"></i>
+                            </span>
+                        </div>
+
+                        <h3 class="text-[24px] font-bold">নারী ও শিশু সহায়তা</h3>
+                        <p class="text-[18px] text-[#5C5C5C]">Women & Child Helpline</p>
+                        <b class="text-[32px] text-bold block mb-[5px]">109</b>
+                        <span class="text-[gray] bg-[#F2F2F2] text-[18px] py-[8px] px-[12px] rounded-[20px]">সহায়তা</span>
+
+                        <div class="grid grid-cols-2 gap-4 mt-4">
+                            <button onclick="copy(event)" class="py-[8px] border-[1px] border-gray-300 rounded-[10px] text-[16px] cursor-pointer"><i class="fa-solid fa-copy"></i> Copy</button> <button onclick="call(event)" class="cursor-pointer bg-[#00A63E] py-[8px] rounded-[10px] text-white text-[16px]"><i class="fa-solid fa-phone"></i> Call</button>
+                        </div>
+
+                    </div>
+
+                    <div class="bg-[white] p-6 rounded-lg shadow-md">
+                        <div class="flex justify-between items-center">
+                            <div class="h-[50px] w-[50px] bg-[#FFE3E2] flex items-center justify-center rounded-[15px]">
+                                <img class="h-[30px]" src="assets/emergency.png" alt="">
+                            </div>
+                            <span class="cursor-pointer" onclick="ReactCountHeart()">
+                                <i class="fa-regular fa-heart text-[20px]"></i>
+                            </span>
+                        </div>
+
+                        <h3 class="text-[24px] font-bold">দুদক</h3>
+                        <p class="text-[18px] text-[#5C5C5C]">Anti-Corruption</p>
+                        <b class="text-[32px] text-bold block mb-[5px]">106</b>
+                        <span class="text-[gray] bg-[#F2F2F2] text-[18px] py-[8px] px-[12px] rounded-[20px]">সরকারি</span>
+
+                        <div class="grid grid-cols-2 gap-4 mt-4">
+                            <button onclick="copy(event)" class="py-[8px] border-[1px] border-gray-300 rounded-[10px] text-[16px] cursor-pointer"><i class="fa-solid fa-copy"></i> Copy</button> <button onclick="call(event)" class="cursor-pointer bg-[#00A63E] py-[8px] rounded-[10px] text-white text-[16px]"><i class="fa-solid fa-phone"></i> Call</button>
+                        </div>
+
+                    </div>
+
+                    <div class="bg-[white] p-6 rounded-lg shadow-md">
+                        <div class="flex justify-between items-center">
+                            <div class="h-[50px] w-[50px] bg-[#FFE3E2] flex items-center justify-center rounded-[15px]">
+                                <img class="h-[30px]" src="assets/emergency.png" alt="">
+                            </div>
+                            <span class="cursor-pointer" onclick="ReactCountHeart()">
+                                <i class="fa-regular fa-heart text-[20px]"></i>
+                            </span>
+                        </div>
+
+                        <h3 class="text-[24px] font-bold">বিদ্যুৎ বিভ্রাট</h3>
+                        <p class="text-[18px] text-[#5C5C5C]">Electricity Outage</p>
+                        <b class="text-[32px] text-bold block mb-[5px]">16216</b>
+                        <span class="text-[gray] bg-[#F2F2F2] text-[18px] py-[8px] px-[12px] rounded-[20px]">বিদ্যুৎ</span>
+
+                        <div class="grid grid-cols-2 gap-4 mt-4">
+                            <button onclick="copy(event)" class="py-[8px] border-[1px] border-gray-300 rounded-[10px] text-[16px] cursor-pointer"><i class="fa-solid fa-copy"></i> Copy</button> <button onclick="call(event)" class="cursor-pointer bg-[#00A63E] py-[8px] rounded-[10px] text-white text-[16px]"><i class="fa-solid fa-phone"></i> Call</button>
+                        </div>
+
+                    </div>
+
+                    <div class="bg-[white] p-6 rounded-lg shadow-md">
+                        <div class="flex justify-between items-center">
+                            <div class="h-[50px] w-[50px] bg-[#FFE3E2] flex items-center justify-center rounded-[15px]">
+                                <img class="h-[30px]" src="assets/emergency.png" alt="">
+                            </div>
+                            <span class="cursor-pointer" onclick="ReactCountHeart()">
+                                <i class="fa-regular fa-heart text-[20px]"></i>
+                            </span>
+                        </div>
+
+                        <h3 class="text-[24px] font-bold">ব্র্যাক</h3>
+                        <p class="text-[18px] text-[#5C5C5C]">Brac</p>
+                        <b class="text-[32px] text-bold block mb-[5px]">16445</b>
+                        <span class="text-[gray] bg-[#F2F2F2] text-[18px] py-[8px] px-[12px] rounded-[20px]">এনজিও</span>
+
+                        <div class="grid grid-cols-2 gap-4 mt-4">
+                            <button onclick="copy(event)" class="py-[8px] border-[1px] border-gray-300 rounded-[10px] text-[16px] cursor-pointer"><i class="fa-solid fa-copy"></i> Copy</button> <button onclick="call(event)" class="cursor-pointer bg-[#00A63E] py-[8px] rounded-[10px] text-white text-[16px]"><i class="fa-solid fa-phone"></i> Call</button>
+                        </div>
+
+                    </div>
+
+                    <div class="bg-[white] p-6 rounded-lg shadow-md">
+                        <div class="flex justify-between items-center">
+                            <div class="h-[50px] w-[50px] bg-[#FFE3E2] flex items-center justify-center rounded-[15px]">
+                                <img class="h-[30px]" src="assets/emergency.png" alt="">
+                            </div>
+                            <span class="cursor-pointer" onclick="ReactCountHeart()">
+                                <i class="fa-regular fa-heart text-[20px]"></i>
+                            </span>
+                        </div>
+
+                        <h3 class="text-[24px] font-bold">বাংলাদেশ রেলওয়ে</h3>
+                        <p class="text-[18px] text-[#5C5C5C]">Bangladesh Railway</p>
+                        <b class="text-[32px] text-bold block mb-[5px]">163</b>
+                        <span class="text-[gray] bg-[#F2F2F2] text-[18px] py-[8px] px-[12px] rounded-[20px]">পরিবহন</span>
+
+                        <div class="grid grid-cols-2 gap-4 mt-4">
+                            <button onclick="copy(event)" class="py-[8px] border-[1px] border-gray-300 rounded-[10px] text-[16px] cursor-pointer"><i class="fa-solid fa-copy"></i> Copy</button> <button onclick="call(event)" class="cursor-pointer bg-[#00A63E] py-[8px] rounded-[10px] text-white text-[16px]"><i class="fa-solid fa-phone"></i> Call</button>
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+
+                <!-- Call History -->
+                <div class="bg-[white] col-span-1 shadow-md rounded-lg">
+                    <div class="flex justify-between items-center p-6 border-b-[1px] border-gray-300">
+                        <h3>
+                            Call History
+                        </h3>
+
+                        <button onclick="clearCallHistory()" class="py-[8px] px-[30px] px-[12px] bg-[#00A63E] text-white rounded-[50px]">Clear</button>
+                    </div>
+                </div>
+
+            </div>
         </section>
     </main>
 
